@@ -24,7 +24,7 @@ class TestRunner {
     }
 
     JUnitCore core = new JUnitCore();
-    RunListener listener = new XmlListener();
+    RunListener listener = new MyListener();
     core.addListener(listener);
     core.run(classes.toArray(new Class[0]));   
   }
@@ -32,7 +32,7 @@ class TestRunner {
 
 
 
-class XmlListener extends RunListener {
+class MyListener extends RunListener {
 
     public void testRunStarted(Description description) throws Exception {
         System.out.println("Number of tests to execute: " + description.testCount());
