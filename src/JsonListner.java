@@ -1,38 +1,12 @@
-import java.util.ArrayList;
-import java.util.List;
+package org.junit.runner;
 
-import org.junit.runner.JUnitCore;
 import org.junit.runner.notification.RunListener;
-
 
 import org.junit.runner.Description;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-class TestRunner {
-
-  public static void main (String args[]) {
-    
-   List<Class<?>> classes= new ArrayList<Class<?>>();
-    
-    for(String each : args){
-      try {
-        classes.add(Class.forName(each));
-      } catch (ClassNotFoundException e) {
-        System.out.println("Class Not found");
-      }
-    }
-
-    JUnitCore core = new JUnitCore();
-    RunListener listener = new MyListener();
-    core.addListener(listener);
-    core.run(classes.toArray(new Class[0]));   
-  }
-}
-
-
-
-class MyListener extends RunListener {
+class JsonListener extends RunListener {
 
     public void testRunStarted(Description description) throws Exception {
         System.out.println("Number of tests to execute: " + description.testCount());
