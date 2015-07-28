@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.notification.RunListener;
 
-class JsonRunner {
+public class JsonRunner {
 
   public static void main (String args[]) {
     
