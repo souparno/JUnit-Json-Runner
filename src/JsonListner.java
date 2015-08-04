@@ -12,8 +12,6 @@ import java.io.IOException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-//import java.util.date;
-
 class JsonListener extends RunListener {
 
     private JSONObject _tests_passed = new JSONObject();
