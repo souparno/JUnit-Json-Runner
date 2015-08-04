@@ -12,6 +12,8 @@ import java.io.IOException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+//import java.util.date;
+
 class JsonListener extends RunListener {
 
     private JSONObject _tests_passed = new JSONObject();
@@ -25,46 +27,48 @@ class JsonListener extends RunListener {
     }
 
     public void testRunFinished(Result result) throws Exception {
-       System.out.println("_tests_passed "+ _tests_passed);
-       System.out.println("_tests_started" + _tests_started);
-       System.out.println("_tests_finished"+ _tests_finished);
-       System.out.println("_tests_failures"+_tests_failures);
-       System.out.println("_tests_ignored"+_tests_ignored);
+      System.out.println(_tests_passed);
     }
 
     public void testStarted(Description description) throws Exception {
-        String key = description.getMethodName();
-        String msg = description.getDisplayName();
+        String key = description.getDisplayName();
+        long value = System.currentTimeMillis();
 
-        _tests_started.put(key, msg);
+        _tests_started.put(key, value);
     }
 
     public void testFinished(Description description) throws Exception {
-       String key = description.getMethodName();       
-       String msg = description.getDisplayName();
+       String key = description.getDisplayName();       
+       long value = System.currentTimeMillis();
 
-       _tests_finished.put(key, msg);
+       _tests_finished.put(key, value);
+
+       if(!_tests_failures.containsKey(key) 
+          || !_tests_ignored.containsKey(key)) {
+             _tests_passed.put(key, value);
+       }
+
     }
 
     public void testFailure(Failure failure) throws Exception {
-       String key = failure.getDescription().getMethodName();
-       String msg = failure.getDescription().getDisplayName();
+       String key = failure.getDescription().getDisplayName();
+       long value = System.currentTimeMillis();
 
-       _tests_failures.put(key, msg); 
+       _tests_failures.put(key, value);
     }
 
     public void testAssumptionFailure(Failure failure) {
-      String key = failure.getDescription().getMethodName();
-      String msg = failure.getDescription().getDisplayName();
+       String key = failure.getDescription().getDisplayName();
+       long value = System.currentTimeMillis();
 
-      _tests_failures.put(key, msg); 
-   }
+       _tests_failures.put(key, value);
+    }
 
     public void testIgnored(Description description) throws Exception {
       String key = description.getMethodName();
-      String msg = description.getDisplayName();
-
-      _tests_ignored.put(key, msg);
+      long value = System.currentTimeMillis();
+     
+       _tests_ignored.put(key, value);
     }
 
 }
