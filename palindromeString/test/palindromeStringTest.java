@@ -6,10 +6,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class palstrTest
+public class palindromeStringTest
  {
 
   ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  
 
   @Before
   public void setUpStream() {
@@ -21,12 +22,11 @@ public class palstrTest
      System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
   }
 
-
     @Test
     public void revTest() {
       System.out.println("should rev an input string");
       String  a="Madam";
-      palstr obj = new palstr();
+      palindromeString obj = new palindromeString();
       String b = obj.rev(a);  
       assertEquals("madaM",b);
     }
@@ -34,7 +34,7 @@ public class palstrTest
     @Test
     public void checkTest() {
       System.out.println("shyould check between two strings");
-      palstr obj = new palstr();
+      palindromeString obj = new palindromeString();
       int result = obj.check("hello", "hello"); 
       int expResult = 1;
       assertEquals(expResult,result);
@@ -44,22 +44,27 @@ public class palstrTest
     @Test
     public void checkTest1() {
       System.out.println("shyould check between two strings");
-      palstr obj = new palstr();
+      palindromeString obj = new palindromeString();
       int result = obj.check("hello", "hi"); 
       int expResult = 0;
       assertEquals(expResult,result);
     }
 
     @Test
-   public void mainTestPalindrome(){
-     palstr.main("madam");
-     assertEquals("palindrome", outContent.toString());
+   public void mainTestPalindrome() throws java.io.IOException{
+        ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());
+	System.setIn(in);
+	palindromeString.main();
+        assertEquals("input a number\npalindrome", outContent.toString().toLowerCase());
+     
    }
 
    @Test
-   public void mainTestNotPalindrome(){
-     palstr.main("hymen");
-     assertEquals("not palindrome", outContent.toString());
+   public void mainTestNotPalindrome() throws java.io.IOException{
+        ByteArrayInputStream in = new ByteArrayInputStream("hello".getBytes());
+	System.setIn(in);
+	palindromeString.main();
+     assertEquals("input a number\nnot palindrome", outContent.toString());
    }
 }
 

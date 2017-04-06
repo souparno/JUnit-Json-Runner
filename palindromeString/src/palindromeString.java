@@ -1,4 +1,6 @@
-public class palstr
+import java.io.*;
+
+public class palindromeString
 {
 	public String rev(String a)
 	{
@@ -17,8 +19,11 @@ public class palstr
 	        }
        }
 
-       public static void main(String a){
-         palstr obj = new palstr();
+       public static void main() throws java.io.IOException{
+         System.out.println("input a number"); 
+	 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	 String a=br.readLine();
+         palindromeString obj = new  palindromeString();
          String b = obj.rev(a);
          int check= obj.check(a, b);
 
