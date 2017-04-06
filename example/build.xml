@@ -5,11 +5,10 @@
   <property name="build-classes" value="${build}/classes"/>
   <property name="build-test-classes" value="${build}/test/classes"/>
   <property name="build-test-reports" value="${build}/test/reports"/>
-  <property name="lib" value="lib"/>
-  <property name="junit4" value="${lib}/junit4-4.11.jar"/>
-  <property name="hamcrest-core" value="${lib}/hamcrest-core-1.3.jar"/>
-  <property name="json-runner" value="${lib}/jsonrunner.jar"/>
-  <property name="json-simple" value="${lib}/json-simple-1.1.1.jar"/>  
+  <property name="junit4" value="../lib/junit4-4.11.jar"/>
+  <property name="hamcrest-core" value="../lib/hamcrest-core-1.3.jar"/>
+  <property name="json-runner" value="../dist/jsonrunner.jar"/>
+  <property name="json-simple" value="../lib/json-simple-1.1.1.jar"/>  
 
   <target name="clean">
     <delete dir="${build}"/>
