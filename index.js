@@ -5,7 +5,7 @@ shelljs.exec('javac -d ./palindromeString/build/classes/ ./palindromeString/src/
   silent: true
 }, function(code, output) {
   if (!code) {
-    shelljs.exec('javac -d ./palindromeString/build/test/classes/ -cp ./lib/junit4-4.11.jar:./palindromeString/build/classes ./palindromeString/test/palindromeStringTest.java', {
+    shelljs.exec('javac -d ./palindromeString/build/test/classes/ -cp ./lib/junit4-4.11.jar:./palindromeString/build/classes ./palindromeString/test/*.java', {
       silent: true
     }, function(code, output) {
       if (!code) {

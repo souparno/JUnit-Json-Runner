@@ -1,14 +1,11 @@
 package org.junit.runner;
 
 import org.junit.runner.notification.RunListener;
-
 import org.junit.runner.Description;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-
 import java.io.FileWriter;
 import java.io.IOException;
- 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.lang.reflect.*;
@@ -36,13 +33,11 @@ class JsonListener extends RunListener {
     }
 
     public void testFinished(Description description) throws Exception {
-        Class<?> testClass = description.getTestClass();
-        String methodName = description.getMethodName();
-        Method m = testClass.getDeclaredMethod("getNum");
-        Object o = m.invoke(null);
-        System.out.println("Output: " + o);
-//System.out.println((testClass)field.get(null));
-//System.out.println(testClass.getAnnotation(Risk.class));
+	Class<?> testClass = description.getTestClass();
+	String methodName = description.getMethodName();
+	Method m = testClass.getDeclaredMethod("getDescription");
+	Object o = m.invoke(null);
+        System.out.println(o);
 /*       String key = description.getDisplayName();       */
        //long value = System.currentTimeMillis();
 

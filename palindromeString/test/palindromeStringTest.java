@@ -6,43 +6,30 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class palindromeStringTest
+public class palindromeStringTest extends Base
  {
 
-  ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-  public static String desc;  
 
-  public static String getNum()
-    {
-      return desc;
-    }
-
-  @Before
-  public void setUpStream() {
-     System.setOut(new PrintStream(outContent));
+  public static String getDescription() {
+    return description;
   }
-
-  @After
-  public void cleanUpStream() {
-     System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
-  }
-
     @Test
     public void revTest() {
-      palindromeStringTest.desc = "this should reverse the string";
+      description = "this should reverse the string";
       String  a="Madam";
       palindromeString obj = new palindromeString();
       String b = obj.rev(a);  
       assertEquals("hey there","madaM",b);
     }
 
-    //@Test
-    //public void checkTest() {
-      //palindromeString obj = new palindromeString();
-      //int result = obj.check("hello", "hello"); 
-      //int expResult = 1;
-      //assertEquals(expResult,result);
-    //}
+    @Test
+    public void checkTest() {
+      description = "this should check if the reverse of the strings are equal to each other";
+      palindromeString obj = new palindromeString();
+      int result = obj.check("hello", "hello"); 
+      int expResult = 1;
+      assertEquals(expResult,result);
+    }
 
 
     //@Test
