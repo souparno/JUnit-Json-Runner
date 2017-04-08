@@ -21,4 +21,8 @@ public class Base{
      System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
   }
 
+  public static String getDescription() {
+    return description;
+  }
+
 }

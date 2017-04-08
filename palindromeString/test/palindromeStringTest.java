@@ -6,13 +6,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class palindromeStringTest extends Base
- {
+public class palindromeStringTest extends Base {
 
-
-  public static String getDescription() {
-    return description;
-  }
     @Test
     public void revTest() {
       description = "this should reverse the string";
