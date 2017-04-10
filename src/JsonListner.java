@@ -17,12 +17,14 @@ class JsonListener extends RunListener {
     private JSONObject _tests_finished = new JSONObject();
     private JSONObject _tests_failures = new JSONObject();
     private JSONObject _tests_ignored = new JSONObject();
+    private JSONArray myArray = new JSONArray();
   
     public void testRunStarted(Description description) throws Exception {
      
     }
 
     public void testRunFinished(Result result) throws Exception {
+        System.out.println(myArray);
     }
 
     public void testStarted(Description description) throws Exception {
@@ -37,16 +39,16 @@ class JsonListener extends RunListener {
         Class<?> baseClass = testClass.getSuperclass();
 	Method m = baseClass.getDeclaredMethod("getDescription");
 	Object o = m.invoke(null);
-        System.out.println(o);
-/*       String key = description.getDisplayName();       */
-       //long value = System.currentTimeMillis();
+        
+	JSONObject j = new JSONObject();
+	j.put("description", o);
+	j.put("status", "failed");
+        String key = description.getDisplayName();       
 
-       //_tests_finished.put(key, value);
-
-       //if(!_tests_failures.containsKey(key) 
-          //|| !_tests_ignored.containsKey(key)) {
-             //_tests_passed.put(key, value);
-       //}
+       if(!_tests_failures.containsKey(key) || !_tests_ignored.containsKey(key)) {
+             j.put("status", "passed");
+             myArray.add(j);      
+       }
 
     }
 
