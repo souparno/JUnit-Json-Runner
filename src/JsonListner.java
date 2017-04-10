@@ -1,16 +1,14 @@
 package org.junit.runner;
 
 import org.junit.runner.notification.RunListener;
-
 import org.junit.runner.Description;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-
 import java.io.FileWriter;
 import java.io.IOException;
- 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import java.lang.reflect.*;
 
 class JsonListener extends RunListener {
 
@@ -25,7 +23,6 @@ class JsonListener extends RunListener {
     }
 
     public void testRunFinished(Result result) throws Exception {
-      System.out.println(_tests_passed);
     }
 
     public void testStarted(Description description) throws Exception {
@@ -36,15 +33,20 @@ class JsonListener extends RunListener {
     }
 
     public void testFinished(Description description) throws Exception {
-       String key = description.getDisplayName();       
-       long value = System.currentTimeMillis();
+	Class<?> testClass = description.getTestClass();
+        Class<?> baseClass = testClass.getSuperclass();
+	Method m = baseClass.getDeclaredMethod("getDescription");
+	Object o = m.invoke(null);
+        System.out.println(o);
+/*       String key = description.getDisplayName();       */
+       //long value = System.currentTimeMillis();
 
-       _tests_finished.put(key, value);
+       //_tests_finished.put(key, value);
 
-       if(!_tests_failures.containsKey(key) 
-          || !_tests_ignored.containsKey(key)) {
-             _tests_passed.put(key, value);
-       }
+       //if(!_tests_failures.containsKey(key) 
+          //|| !_tests_ignored.containsKey(key)) {
+             //_tests_passed.put(key, value);
+       //}
 
     }
 
