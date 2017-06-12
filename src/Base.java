@@ -5,7 +5,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runners.MethodSorters;
+import org.junit.FixMethodOrder;
+import java.lang.reflect.*;
 
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Base{
 
   ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -25,4 +30,22 @@ public class Base{
     return description;
   }
 
+  public static Method getMethod(Object obj,String fn_Name){
+	Method fun = null;
+	 try {
+            Method[] methods = obj.getClass().getMethods();
+		for (Method m : methods) {
+  			if (m.getName().equals(fn_Name)) {
+    				fun =m;
+				break;
+  			}
+		}
+         }
+      	 catch (Exception e){}
+         if(fun == null){
+
+	        	assertEquals(0, 1);
+         }
+	 return fun;
+  }
 }

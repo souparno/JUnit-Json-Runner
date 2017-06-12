@@ -12,11 +12,7 @@ import java.lang.reflect.*;
 
 class JsonListener extends RunListener {
 
-    private JSONObject _tests_passed = new JSONObject();
-    private JSONObject _tests_started = new JSONObject();
-    private JSONObject _tests_finished = new JSONObject();
-    private JSONObject _tests_failures = new JSONObject();
-    private JSONObject _tests_ignored = new JSONObject();
+    private int _testFailed = 0;
     private JSONArray myArray = new JSONArray();
   
     public void testRunStarted(Description description) throws Exception {
@@ -28,10 +24,7 @@ class JsonListener extends RunListener {
     }
 
     public void testStarted(Description description) throws Exception {
-        String key = description.getDisplayName();
-        long value = System.currentTimeMillis();
-
-        _tests_started.put(key, value);
+        _testFailed = 0;
     }
 
     public void testFinished(Description description) throws Exception {
@@ -45,32 +38,22 @@ class JsonListener extends RunListener {
 	j.put("status", "failed");
         String key = description.getDisplayName();       
 
-       if(!_tests_failures.containsKey(key) || !_tests_ignored.containsKey(key)) {
+       if(_testFailed == 0) {
              j.put("status", "passed");
-             myArray.add(j);      
-       }
-
+       } 
+       myArray.add(j);      
     }
 
     public void testFailure(Failure failure) throws Exception {
-       String key = failure.getDescription().getDisplayName();
-       long value = System.currentTimeMillis();
-
-       _tests_failures.put(key, value);
+       _testFailed = 1;
     }
 
     public void testAssumptionFailure(Failure failure) {
-       String key = failure.getDescription().getDisplayName();
-       long value = System.currentTimeMillis();
-
-       _tests_failures.put(key, value);
+       _testFailed = 1;
     }
 
     public void testIgnored(Description description) throws Exception {
-      String key = description.getMethodName();
-      long value = System.currentTimeMillis();
-     
-       _tests_ignored.put(key, value);
+       _testFailed = 1;
     }
 
 }
