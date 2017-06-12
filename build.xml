@@ -1,4 +1,4 @@
-<project name="jsonrunner" default='dist'  basedir=".">
+<project name="junit-json-runner" default='dist'  basedir=".">
   <property name="src" value="src"/>
   <property name="build" value="build"/>
   <property name="build-classes" value="build/classes"/>
