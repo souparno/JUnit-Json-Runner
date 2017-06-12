@@ -34,17 +34,15 @@ public class Base{
 	Method fun = null;
 	 try {
             Method[] methods = obj.getClass().getMethods();
-		for (Method m : methods) {
-  			if (m.getName().equals(fn_Name)) {
-    				fun =m;
-				break;
-  			}
+	    for (Method m : methods) {
+		if (m.getName().equals(fn_Name)) {
+			fun =m;
+			break;
 		}
-         }
-      	 catch (Exception e){}
+	    }
+         } catch (Exception e){}
          if(fun == null){
-
-	        	assertEquals(0, 1);
+             assertEquals(0, 1);
          }
 	 return fun;
   }
