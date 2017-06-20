@@ -1,29 +1,20 @@
 package org.junit.runner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.runner.JUnitCore;
+import org.junit.runner.Request;
 import org.junit.runner.notification.RunListener;
 
 public class JsonRunner {
 
   public static void main (String args[]) {
-    
-   List<Class<?>> classes= new ArrayList<Class<?>>();
-    
-    for(String each : args){
-      try {
-        classes.add(Class.forName(each));
-      } catch (ClassNotFoundException e) {
-        System.out.println("Class Not found");
-      }
-    }
-
-    JUnitCore core = new JUnitCore();
-    RunListener listener = new JsonListener();
-    core.addListener(listener);
-    core.run(classes.toArray(new Class[0]));   
+    try {
+      String[] classAndMethod = args[0].split("#");
+      Request request = Request.method(Class.forName(classAndMethod[0]), classAndMethod[1]);
+      JUnitCore core = new JUnitCore();
+      RunListener listener = new JsonListener();
+      core.addListener(listener);
+      core.run(request);   
+    } catch (ClassNotFoundException e){}
   }
 }
 
