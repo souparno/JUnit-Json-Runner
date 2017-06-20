@@ -36,7 +36,7 @@ public class Base{
             Method[] methods = obj.getClass().getMethods();
 	    for (Method m : methods) {
 		if (m.getName().equals(fn_Name)) {
-			fun =m;
+			fun = m;
 			break;
 		}
 	    }
