@@ -9,12 +9,12 @@ import org.junit.runners.MethodSorters;
 import org.junit.FixMethodOrder;
 import java.lang.reflect.*;
 
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Base{
 
   ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-  static String description;  
+  static String description; 
+  static String hint; 
 
   @Before
   public void setUpStream() {
@@ -29,7 +29,9 @@ public class Base{
   public static String getDescription() {
     return description;
   }
-
+  public static String getHint(){
+    return hint;
+  }
   public static Method getMethod(Object obj,String fn_Name){
 	Method fun = null;
 	 try {
