@@ -30,13 +30,15 @@ class JsonListener extends RunListener {
     public void testFinished(Description description) throws Exception {
 	Class<?> testClass = description.getTestClass();
         Class<?> baseClass = testClass.getSuperclass();
-	Method m = baseClass.getDeclaredMethod("getDescription");
-	Object o = m.invoke(null);
-        
+	Method getDescription = baseClass.getDeclaredMethod("getDescription");
+	Method getHint = baseClass.getDeclaredMethod("getHint");
+	Object _description = getDescription.invoke(null);
+        Object _hint = getHint.invoke(null);
+
 	JSONObject j = new JSONObject();
-	j.put("description", o);
+	j.put("description", _description);
+	j.put("hint", _hint);
 	j.put("status", "failed");
-        String key = description.getDisplayName();       
 
        if(_testFailed == 0) {
              j.put("status", "passed");
