@@ -9,12 +9,13 @@ import org.junit.runners.MethodSorters;
 import org.junit.FixMethodOrder;
 import java.lang.reflect.*;
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Base{
 
   ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   static String description; 
   static String hint; 
+  static Object obj;
 
   @Before
   public void setUpStream() {
@@ -24,6 +25,14 @@ public class Base{
   @After
   public void cleanUpStream() {
      System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+  }
+
+  public static Object getDebuggingObject(){
+    return obj;
+  }
+
+  public static void debug(Object myobj) {
+    obj = myobj; 
   }
 
   public static String getDescription() {
