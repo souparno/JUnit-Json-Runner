@@ -13,6 +13,7 @@ import java.lang.reflect.*;
 public class Base{
 
   ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  static String instruction;
   static String description; 
   static String hint; 
   static Object obj;
@@ -33,6 +34,10 @@ public class Base{
 
   public static void debug(Object myobj) {
     obj = myobj; 
+  }
+
+  public static String getInstruction() {
+    return instruction;
   }
 
   public static String getDescription() {
