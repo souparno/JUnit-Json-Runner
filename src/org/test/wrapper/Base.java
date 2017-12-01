@@ -1,4 +1,4 @@
-package junitJsonRunner;
+package org.test.wrapper;
 
 import java.io.*;
 import org.junit.After;
